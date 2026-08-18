@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/CLWebStore.Catalog.API/CLWebStore.Catalog.API.csproj" Id="f42682ee-0ec0-40b9-9063-f153618e3a85" />
+    <Project Path="src/CLWebStore.Catalog.Application/CLWebStore.Catalog.Application.csproj" Id="cf9766de-fe12-494f-9ba4-5e235ec2e625" />
+    <Project Path="src/CLWebStore.Catalog.Domain/CLWebStore.Catalog.Domain.csproj" Id="09093a7d-e6ec-4dc1-8ab4-47a4bc482913" />
+    <Project Path="src/CLWebStore.Catalog.Infrastructure/CLWebStore.Catalog.Infrastructure.csproj" Id="c393d13d-80e9-48e0-8d3f-523b22cbe29b" />
+    <Project Path="src/CLWebStore.Catalog.OutboxProcessor/CLWebStore.Catalog.OutboxProcessor.csproj" Id="4d27e000-4509-4616-aeb9-517b7169d3bb" />
+    <Project Path="src/CLWebStore.Catalog.ReadModelProjector/CLWebStore.Catalog.ReadModelProjector.csproj" Id="de329223-4cca-466d-8e30-75b16ae27e05" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CLWebStore.Catalog.UnitTests/CLWebStore.Catalog.UnitTests.csproj" Id="47d1792e-5eb7-4b01-8f2e-ba9b75196f4f" />
+  </Folder>
+</Solution>

@@ -1,0 +1,54 @@
+# Build artifacts
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.msi
+*.msix
+*.msm
+*.cert
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code & Rider
+.vscode/
+.idea/
+*.sln.iml
+
+# Local settings override files
+local.settings.json
+appsettings.Local.json
+appsettings.local.json
+docker-compose.override.yml
+
+# Secrets & Local overrides
+secrets.json
+*.usersecrets
+
+# Local development environment setup
+.env
+.env.local
+.env.*.local
+
+# Test output & Code coverage
+TestResults/
+*.trx
+*.vstest
+*.coverage
+*.coveragexml
+[Cc]ode[Cc]overage/
+
+# NuGet packages
+*.nuget.props
+*.nuget.targets
+packages/
+
+# Operating systems
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  asb-sql:
+    image: "mcr.microsoft.com/azure-sql-edge:latest"
+    container_name: asb-sql
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourPassword
+    networks:
+      - sb-emulator-network
+
+  asb-emulator:
+    image: "mcr.microsoft.com/azure-messaging/servicebus-emulator:latest"
+    container_name: asb-emulator
+    ports:
+      - "5672:5672" # AMQP messaging port
+      - "5300:5300" # HTTP Management port
+    volumes:
+      - ./Config.json:/ServiceBus_Emulator/ConfigFiles/Config.json
+    environment:
+      - SQL_SERVER=asb-sql
+      - MSSQL_SA_PASSWORD=YourPassword
+      - ACCEPT_EULA=Y
+    depends_on:
+      - asb-sql
+    networks:
+      - sb-emulator-network
+
+  azurite:
+    image: "mcr.microsoft.com/azure-storage/azurite:latest"
+    container_name: azurite
+    ports:
+      - "10000:10000" # Blob Storage
+      - "10001:10001" # Queue Storage
+      - "10002:10002" # Table Storage
+    networks:
+      - sb-emulator-network
+    # Optional: command to silence blob/queue logs if you only care about Table Storage
+    command: "azurite --loose --tableHost 0.0.0.0 --blobHost 0.0.0.0 --queueHost 0.0.0.0"
+
+networks:
+  sb-emulator-network:
+    driver: bridge

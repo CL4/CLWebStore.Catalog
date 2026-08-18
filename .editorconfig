@@ -1,0 +1,55 @@
+# Top-most EditorConfig file
+root = true
+
+# Global defaults for cloud-native deployment (Linux hosts)
+[*]
+end_of_line = lf
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+# Keep backend C# files explicitly formatted 
+# Use BOM ONLY for backend C# code to keep the Windows IDE happy
+[*.cs]
+indent_size = 4
+charset = utf-8-bom
+end_of_line = lf
+
+# Strictly NO BOM for anything that touches cloud infrastructure
+[*.{json,yml,yaml,sh,dockerfile}]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+
+# Enforce file-scoped namespaces (C# 10+)
+csharp_style_namespace_declarations = file_scoped:suggestion
+
+# Organize Usings (Recommended Standard)
+dotnet_sort_system_directives_first = true:suggestion
+dotnet_separate_import_directive_groups = true:suggestion
+
+# Line-wrapping and spacing rules to enforce parameter wrapping
+csharp_preserve_single_line_blocks = false:suggestion
+csharp_preserve_single_line_statements = false:suggestion
+
+# Force parameter wrapping instantly (Changing from wrap_if_long to wrap_always)
+csharp_method_declaration_wrapping = wrap_always:suggestion
+csharp_method_call_wrapping = wrap_always:suggestion
+
+# Set a strict character layout threshold
+max_line_length = 120
+
+# Spacing rules
+csharp_new_line_before_open_brace = methods, types, control_blocks:suggestion
+csharp_space_between_method_declaration_parameter_list_parentheses = false:suggestion
+csharp_space_after_comma = true:suggestion
+csharp_space_before_comma = false:suggestion
+
+# Visual Studio Code Cleanup settings
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+end_of_line = lf
+insert_final_newline = true
+
+# Suppress production performance logging analyzer false-positives inside test assertions
+[tests/**.cs]
+dotnet_diagnostic.CA1873.severity = none
