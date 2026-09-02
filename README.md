@@ -1,14 +1,18 @@
 # CLWebStore.Catalog
 
-Cloud-native Product Catalog microservice built with **.NET 10**,
-**ASP.NET Core**, **Domain-Driven Design (DDD)**, **CQRS**, and an
-**event-driven architecture** using the **Transactional Outbox
-Pattern**.
+Product Catalog microservice built with **.NET 10 and ASP.NET Core** as a personal software engineering project exploring modern application development patterns and practices.
 
-The project is designed as a public engineering portfolio demonstrating
-modern enterprise software architecture and engineering practices, with
-an emphasis on maintainability, scalability, eventual consistency,
-observability, and separation of concerns.
+The project applies concepts including **Domain-Driven Design (DDD), CQRS, event-driven processing**, and the **Transactional Outbox Pattern**.
+
+CLWebStore.Catalog serves as a hands-on learning and engineering project focused on building practical, maintainable software while exploring modern .NET technologies and architectural approaches.
+
+**AI-Assisted Development**
+
+CLWebStore.Catalog was developed as a hands-on learning project with the assistance of AI development tools.
+
+AI was used as a collaborative tool throughout the project to help explore technical concepts, evaluate implementation approaches, generate and review code, troubleshoot issues, and accelerate development.
+
+The project reflects my ongoing effort to strengthen my hands-on software development skills while learning how to use AI-assisted development tools effectively to improve productivity and efficiency.
 
 ## High-Level Architecture
 
@@ -23,36 +27,21 @@ Architecture](assets/High_Level_Architecture.png)
 
 CLWebStore.Catalog follows a layered Clean Architecture approach:
 
--   **API Layer** --- exposes versioned HTTP endpoints through ASP.NET
-    Core.
--   **Application Layer** --- implements CQRS using MediatR, application
-    commands, queries, handlers, validation, and cross-cutting
-    behaviors.
--   **Domain Layer** --- contains the Product aggregate, entities, value
-    objects, domain events, and core business rules.
--   **Infrastructure Layer** --- implements persistence, repositories,
-    query services, Cosmos DB integration, PostgreSQL queries,
-    configuration, and observability.
--   **Outbox Processor** --- an Azure Function that reads committed
-    outbox events from the Cosmos DB change feed and publishes them to
-    Azure Service Bus.
--   **Read Model Projector** --- an Azure Function that consumes product
-    events from Azure Service Bus and asynchronously updates the
-    PostgreSQL read model.
--   **Unit Tests** --- xUnit/Moq tests covering the implemented API,
-    application, domain, infrastructure, Outbox Processor, and Read
-    Model Projector behavior.
+- **API Layer** — exposes versioned HTTP endpoints through ASP.NET Core.
+- **Application Layer** — implements CQRS using MediatR, application commands, queries, handlers, validation, and cross-cutting behaviors.
+- **Domain Layer** — contains the Product aggregate, entities, value objects, domain events, and core business rules.
+- **Infrastructure Layer** — implements persistence, repositories, query services, Cosmos DB integration, PostgreSQL queries, configuration, and observability.
+- **Outbox Processor** — an Azure Function that reads committed outbox events from the Cosmos DB change feed and publishes them to Azure Service Bus.
+- **Read Model Projector** — an Azure Function that consumes product events from Azure Service Bus and asynchronously updates the PostgreSQL read model.
+- **Unit Tests** — xUnit/Moq tests covering implemented API, application, domain, infrastructure, Outbox Processor, and Read Model Projector behavior.
 
-This separation keeps business logic independent from infrastructure
-concerns while allowing the read and write workloads to scale
-independently.
+This separation keeps business logic isolated from infrastructure concerns and separates read and write responsibilities.
 
-## Core Architectural Patterns
+## Architecture and Design Approaches
 
 ### Domain-Driven Design
 
-The Product Catalog bounded context is modeled around a `Product`
-aggregate.
+The Product Catalog bounded context is modeled around a `Product` aggregate.
 
 The domain layer contains:
 
@@ -61,13 +50,10 @@ The domain layer contains:
 -   `Money` value object
 -   `ProductName` value object
 -   `Sku` value object
--   Domain events such as `ProductCreatedEvent` and
-    `ProductUpdatedEvent`
--   Domain primitives including `Entity`, `AggregateRoot`,
-    `ValueObject`, and `IDomainEvent`
+-   Domain events such as `ProductCreatedEvent` and `ProductUpdatedEvent`
+-   Domain primitives including `Entity`, `AggregateRoot`, `ValueObject`, and `IDomainEvent`
 
-The domain model is intentionally isolated from persistence and
-application concerns.
+The domain model is intentionally isolated from persistence and application concerns.
 
 ### CQRS
 
@@ -90,12 +76,9 @@ MediatR provides the application-level request/handler pipeline.
 
 ### Transactional Outbox Pattern
 
-Product changes and their corresponding outbox events are persisted to
-Cosmos DB as part of the same transactional operation.
+Product changes and their corresponding outbox events are persisted to Cosmos DB as part of the same transactional operation.
 
-This avoids the classic distributed consistency problem where a database
-transaction succeeds but publishing the corresponding integration event
-fails.
+This addresses the distributed consistency problem where a database transaction succeeds but publishing the corresponding integration event fails.
 
 The high-level sequence is:
 
@@ -131,8 +114,7 @@ Domain Aggregate
 
 ### Event-Driven Read Model
 
-The PostgreSQL read model is maintained asynchronously from product
-events.
+The PostgreSQL read model is maintained asynchronously from product events.
 
 ``` text
 Azure Service Bus
@@ -150,34 +132,30 @@ Product Projection Service
 PostgreSQL Read Model
 ```
 
-This allows the write model and read model to evolve and scale
-independently.
+This separates the read and write models, allowing them to evolve independently and supporting independent scaling where needed.
 
 ## Request and Data Flow
 
 ### Write Flow
 
-1.  A client sends an HTTP request to the versioned Products API.
-2.  The API validates and maps the request.
-3.  The command is dispatched through MediatR.
-4.  Validation, logging, and tracing behaviors execute through the
-    MediatR pipeline.
-5.  The command handler operates on the Product aggregate.
-6.  The repository persists the aggregate and its outbox event to Cosmos
-    DB using the transactional outbox approach.
-7.  The transaction completes successfully.
-8.  The Cosmos DB change feed makes the outbox message available to the
-    Outbox Processor.
-9.  The Outbox Processor publishes the event to Azure Service Bus.
+1. A client sends an HTTP request to the versioned Products API.
+2. The API validates and maps the request.
+3. The command is dispatched through MediatR.
+4. Validation, logging, and tracing behaviors execute through the MediatR pipeline.
+5. The command handler operates on the Product aggregate.
+6. The repository persists the aggregate and its outbox event to Cosmos DB using the transactional outbox approach.
+7. The transaction completes successfully.
+8. The Cosmos DB change feed makes the outbox message available to the Outbox Processor.
+9. The Outbox Processor publishes the event to Azure Service Bus.
 
 ### Read Flow
 
-1.  A client sends a product query to the API.
-2.  The query is dispatched through MediatR.
-3.  The query handler uses the product query service.
-4.  Dapper queries the PostgreSQL read model.
-5.  The resulting projection is mapped to the appropriate API DTO.
-6.  The API returns the response to the client.
+1. A client sends a product query to the API.
+2. The query is dispatched through MediatR.
+3. The query handler uses the product query service.
+4. Dapper queries the PostgreSQL read model.
+5. The resulting projection is mapped to the appropriate API DTO.
+6. The API returns the response to the client.
 
 Reads therefore do not require loading the Product domain aggregate.
 
@@ -270,8 +248,7 @@ components, including:
 -   `ActivitySources`
 -   Read Model Projector diagnostics
 
-The architecture is designed to provide visibility across the
-synchronous API request path and asynchronous event-driven pipeline.
+The solution includes tracing and diagnostics intended to provide visibility across synchronous API requests and asynchronous event processing.
 
 ## Configuration and Cloud Services
 
@@ -419,20 +396,19 @@ implemented capabilities.
 | Observability | OpenTelemetry |
 | Unit Testing | xUnit / Moq |
 
-## Engineering Principles
+## Design Goals and Technical Focus
 
-The project emphasizes:
+The project explores and applies:
 
 -   Domain-Driven Design
 -   Clean Architecture
 -   CQRS
--   Event-Driven Architecture
+-   Event-driven processing
 -   Transactional Outbox Pattern
 -   Separation of concerns
 -   Asynchronous processing
 -   Eventual consistency
--   Independent read/write scaling
--   Production-oriented observability
+-   Observability
 -   Maintainable and testable code
 
 ## Current Testing Status
@@ -444,29 +420,24 @@ The project emphasizes:
 | Pact / Contract Tests | Planned |
 | End-to-End Tests | Planned |
 
-The distinction is intentional: the architecture is designed with
-broader testing strategies in mind, but only unit testing has been
-implemented at this stage.
+The distinction is intentional: the project is structured with broader testing strategies in mind, but only unit testing has been implemented at this stage.
 
 ## Project Goals
 
-CLWebStore.Catalog is intended not only to provide Product Catalog
-functionality, but also to demonstrate practical application of modern
-software engineering techniques in a realistic cloud-native
-microservice.
+CLWebStore.Catalog is a personal engineering project created to provide a hands-on environment for building and learning with modern .NET technologies and software design approaches.
 
-The project focuses on building a system that is:
+The project provides an opportunity to explore and apply concepts including layered architecture, DDD, CQRS, asynchronous processing, event-driven integration, and observability in a practical application.
+
+The project focuses on building software that is:
 
 -   Maintainable
 -   Testable
 -   Observable
--   Resilient
--   Scalable
 -   Loosely coupled
--   Suitable for asynchronous distributed processing
+-   Suitable for asynchronous processing
 
 ---
 
 ## License
 
-Internal project for the CLWebStore platform.
+Personal engineering project.
