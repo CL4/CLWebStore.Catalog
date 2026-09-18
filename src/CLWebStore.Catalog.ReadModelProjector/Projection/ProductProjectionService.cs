@@ -13,10 +13,10 @@ public sealed class ProductProjectionService : IProductProjectionService
             id,
             sku,
             name,
-            price_amount,
-            price_currency,
-            category_ids,
-            related_product_ids,
+            priceamount,
+            pricecurrency,
+            categoryids,
+            relatedproductids,
             images
         )
         VALUES (
@@ -33,10 +33,10 @@ public sealed class ProductProjectionService : IProductProjectionService
         DO UPDATE SET
             sku = EXCLUDED.sku,
             name = EXCLUDED.name,
-            price_amount = EXCLUDED.price_amount,
-            price_currency = EXCLUDED.price_currency,
-            category_ids = EXCLUDED.category_ids,
-            related_product_ids = EXCLUDED.related_product_ids,
+            priceamount = EXCLUDED.priceamount,
+            pricecurrency = EXCLUDED.pricecurrency,
+            categoryids = EXCLUDED.categoryids,
+            relatedproductids = EXCLUDED.relatedproductids,
             images = EXCLUDED.images
         """;
 

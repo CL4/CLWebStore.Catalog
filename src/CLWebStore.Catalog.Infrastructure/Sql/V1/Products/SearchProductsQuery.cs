@@ -7,11 +7,11 @@ public static class SearchProductsQuery
             id                AS Id,
             sku               AS Sku,
             name              AS Name,
-            price_amount      AS PriceAmount,
-            price_currency    AS PriceCurrency,
+            priceamount       AS PriceAmount,
+            pricecurrency     AS PriceCurrency,
             version           AS Version,
-            category_ids      AS CategoryIds,
-            related_product_ids AS RelatedProductIds,
+            categoryids       AS CategoryIds,
+            relatedproductids AS RelatedProductIds,
             images            AS Images
         FROM read_schema.Products
         WHERE name ILIKE '%' || @Query || '%' OR sku ILIKE '%' || @Query || '%'

@@ -1,4 +1,4 @@
-﻿namespace CLWebStore.Catalog.Application.DTOs.V1;
+﻿using CLWebStore.Catalog.Application.DTOs.V1;
 
 public record ProductDto
 {
@@ -9,7 +9,8 @@ public record ProductDto
     public string PriceCurrency { get; init; } = string.Empty;
     public string? Version { get; init; }
 
-    public List<Guid> CategoryIds { get; init; } = [];
-    public List<Guid> RelatedProductIds { get; init; } = [];
+    public Guid[] CategoryIds { get; init; } = [];
+    public Guid[] RelatedProductIds { get; init; } = [];
+
     public List<ProductImageDto> Images { get; init; } = [];
 }

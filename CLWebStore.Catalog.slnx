@@ -11,6 +11,7 @@
     <Project Path="src/CLWebStore.Catalog.ReadModelProjector/CLWebStore.Catalog.ReadModelProjector.csproj" Id="de329223-4cca-466d-8e30-75b16ae27e05" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/CLWebStore.Catalog.IntegrationTests/CLWebStore.Catalog.IntegrationTests.csproj" />
     <Project Path="tests/CLWebStore.Catalog.UnitTests/CLWebStore.Catalog.UnitTests.csproj" Id="47d1792e-5eb7-4b01-8f2e-ba9b75196f4f" />
   </Folder>
 </Solution>

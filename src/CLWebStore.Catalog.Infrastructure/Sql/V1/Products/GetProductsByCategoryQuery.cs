@@ -7,14 +7,14 @@ public static class GetProductsByCategoryQuery
             id                AS Id,
             sku               AS Sku,
             name              AS Name,
-            price_amount      AS PriceAmount,
-            price_currency    AS PriceCurrency,
+            priceamount       AS PriceAmount,
+            pricecurrency     AS PriceCurrency,
             version           AS Version,
-            category_ids      AS CategoryIds,
-            related_product_ids AS RelatedProductIds,
+            categoryids       AS CategoryIds,
+            relatedproductids AS RelatedProductIds,
             images            AS Images
         FROM read_schema.Products
-        WHERE @CategoryId = ANY(category_ids)
+        WHERE @CategoryId = ANY(categoryids)
         """;
 
     public sealed record Parameters(Guid CategoryId);

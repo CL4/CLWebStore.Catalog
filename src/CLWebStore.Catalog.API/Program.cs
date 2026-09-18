@@ -78,21 +78,33 @@ typeof(ApplicationServiceRegistration).Assembly);
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
-// 6. Observability (OpenTelemetry / New Relic context)
+// 6. Observability (OpenTelemetry / optional New Relic export)
 var serviceName = "CLWebStore.Catalog";
 var resourceBuilder = ResourceBuilder.CreateDefault().AddService(serviceName);
 
-// Safely pull the Key Vault secret and the Endpoint from Configuration
-var newRelicKey = builder.Configuration["Observability:NewRelicApiKey"];
-var newRelicEndpointString = builder.Configuration["Observability:NewRelicOtlpEndpoint"];
+var enableNewRelicExport =
+    builder.Configuration.GetValue<bool>("Observability:EnableNewRelicExport");
 
-// Fail-fast if the endpoint is missing from appsettings so we don't crash the Uri parser
-if (string.IsNullOrWhiteSpace(newRelicEndpointString))
+Uri? newRelicEndpoint = null;
+string? newRelicApiKey = null;
+
+if (enableNewRelicExport)
 {
-    throw new InvalidOperationException("Observability:NewRelicOtlpEndpoint is missing from appsettings.json");
-}
+    var newRelicEndpointString =
+        builder.Configuration["Observability:NewRelicOtlpEndpoint"];
 
-var newRelicEndpoint = new Uri(newRelicEndpointString);
+    if (string.IsNullOrWhiteSpace(newRelicEndpointString))
+    {
+        throw new InvalidOperationException(
+            "Observability:NewRelicOtlpEndpoint is required when " +
+            "Observability:EnableNewRelicExport is true.");
+    }
+
+    newRelicEndpoint = new Uri(newRelicEndpointString);
+
+    newRelicApiKey =
+        builder.Configuration["Observability:NewRelicApiKey"];
+}
 
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracing =>
@@ -101,13 +113,17 @@ builder.Services.AddOpenTelemetry()
             .SetResourceBuilder(resourceBuilder)
             .AddAspNetCoreInstrumentation()
             .AddHttpClientInstrumentation()
-            .AddSource("CLWebStore.Catalog.*")
-            .AddOtlpExporter(options =>
+            .AddSource("CLWebStore.Catalog.*");
+
+        if (enableNewRelicExport)
+        {
+            tracing.AddOtlpExporter(options =>
             {
-                options.Endpoint = newRelicEndpoint; // <-- Assigned from config here
+                options.Endpoint = newRelicEndpoint!;
                 options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
-                options.Headers = $"api-key={newRelicKey}";
+                options.Headers = $"api-key={newRelicApiKey}";
             });
+        }
     })
     .WithMetrics(metrics =>
     {
@@ -115,30 +131,41 @@ builder.Services.AddOpenTelemetry()
             .SetResourceBuilder(resourceBuilder)
             .AddAspNetCoreInstrumentation()
             .AddHttpClientInstrumentation()
-            .AddRuntimeInstrumentation()
-            .AddOtlpExporter(options =>
+            .AddRuntimeInstrumentation();
+
+        if (enableNewRelicExport)
+        {
+            metrics.AddOtlpExporter(options =>
             {
-                options.Endpoint = newRelicEndpoint; // <-- Assigned from config here
+                options.Endpoint = newRelicEndpoint!;
                 options.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
-                options.Headers = $"api-key={newRelicKey}";
+                options.Headers = $"api-key={newRelicApiKey}";
             });
+        }
     });
 
-// Configure Logging to flow into OpenTelemetry
-builder.Logging.AddOpenTelemetry(options =>
+// 7. Configure logging telemetry export
+if (enableNewRelicExport)
 {
-    options.SetResourceBuilder(resourceBuilder);
-    options.IncludeFormattedMessage = true;
-    options.IncludeScopes = true;
-    options.AddOtlpExporter(exporterOptions =>
+    builder.Logging.AddOpenTelemetry(options =>
     {
-        exporterOptions.Endpoint = newRelicEndpoint; // <-- Assigned from config here
-        exporterOptions.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
-        exporterOptions.Headers = $"api-key={newRelicKey}";
-    });
-});
+        options.SetResourceBuilder(resourceBuilder);
+        options.IncludeFormattedMessage = true;
+        options.IncludeScopes = true;
 
-// 7. Health Checks (Liveness and Readiness)
+        options.AddOtlpExporter(exporterOptions =>
+        {
+            exporterOptions.Endpoint = newRelicEndpoint!;
+            exporterOptions.Protocol =
+                OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
+
+            exporterOptions.Headers =
+                $"api-key={newRelicApiKey}";
+        });
+    });
+}
+
+// 8. Health Checks (Liveness and Readiness)
 builder.Services.AddHealthChecks()
     // Liveness probe - is the container up?
     .AddCheck("self", () => HealthCheckResult.Healthy(), tags: new[] { "liveness" })
@@ -146,7 +173,7 @@ builder.Services.AddHealthChecks()
     // Readiness probe - can we talk to the database?
     .AddAzureCosmosDB(
     // Resolves your existing factory from DI so it reuses the same underlying connection!
-    clientFactory: sp => sp.GetRequiredService<CosmosClientFactory>().GetClient(),
+    clientFactory: sp => sp.GetRequiredService<ICosmosClientFactory>().GetClient(),
     name: "cosmosdb-check",
     failureStatus: HealthStatus.Unhealthy,
     tags: ["readiness"]

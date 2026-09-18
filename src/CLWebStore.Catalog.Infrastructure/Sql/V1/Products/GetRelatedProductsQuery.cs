@@ -7,14 +7,18 @@ public static class GetRelatedProductsQuery
             id                AS Id,
             sku               AS Sku,
             name              AS Name,
-            price_amount      AS PriceAmount,
-            price_currency    AS PriceCurrency,
+            priceamount       AS PriceAmount,
+            pricecurrency     AS PriceCurrency,
             version           AS Version,
-            category_ids      AS CategoryIds,
-            related_product_ids AS RelatedProductIds,
+            categoryids       AS CategoryIds,
+            relatedproductids AS RelatedProductIds,
             images            AS Images
         FROM read_schema.Products
-        WHERE id = ANY((SELECT related_product_ids FROM read_schema.Products WHERE id = @ProductId))
+        WHERE id = ANY(
+            SELECT unnest(relatedproductids)
+            FROM read_schema.Products
+            WHERE id = @ProductId
+        )
         """;
 
     public sealed record Parameters(Guid ProductId);

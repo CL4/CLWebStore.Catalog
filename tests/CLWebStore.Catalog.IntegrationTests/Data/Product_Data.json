@@ -1,0 +1,311 @@
+[
+  {
+    "sku": "CPU-AMD-R9-9950X",
+    "name": "AMD Ryzen 9 9950X 16-Core Processor",
+    "priceAmount": 699.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "4d30a938-fd03-4ea5-b89d-fd278abfa001"
+    ],
+    "relatedProductIds": [
+      "f768dc06-e3b5-5213-ac95-ef3f02eb196d",
+      "e75c9b57-35c4-5ef2-93e1-319a47593a08"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/cpu/amd-ryzen-9-9950x-front.jpg",
+        "altText": "AMD Ryzen 9 9950X processor box",
+        "isPrimary": true
+      }
+    ],
+    "id": "9b0218c1-9300-5179-8cd9-5e4006c02bd1"
+  },
+  {
+    "sku": "GPU-NVIDIA-RTX5090",
+    "name": "NVIDIA GeForce RTX 5090 32GB Graphics Card",
+    "priceAmount": 1999.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "13db4dc6-c1d2-4b85-928e-96b6a6761002"
+    ],
+    "relatedProductIds": [
+      "9b0218c1-9300-5179-8cd9-5e4006c02bd1",
+      "85617b04-1bb3-55b2-8442-6676c609204f"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/gpu/rtx5090-front.jpg",
+        "altText": "NVIDIA GeForce RTX 5090 graphics card",
+        "isPrimary": true
+      }
+    ],
+    "id": "2345ca9e-6a51-58fd-a968-5e95e7627a1c"
+  },
+  {
+    "sku": "MB-ASUS-X870E",
+    "name": "ASUS ROG STRIX X870E Gaming WiFi Motherboard",
+    "priceAmount": 449.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "80c8314f-4bca-4cb8-ae8d-d1a36a0b1001"
+    ],
+    "relatedProductIds": [
+      "9b0218c1-9300-5179-8cd9-5e4006c02bd1",
+      "19ed576a-9a2e-5cb8-8d73-e60e65055ad6"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/motherboards/asus-x870e-front.jpg",
+        "altText": "ASUS ROG STRIX X870E motherboard",
+        "isPrimary": true
+      }
+    ],
+    "id": "f768dc06-e3b5-5213-ac95-ef3f02eb196d"
+  },
+  {
+    "sku": "RAM-GSKILL-64GB-DDR5",
+    "name": "G.Skill Trident Z5 RGB 64GB DDR5-6400 Memory Kit",
+    "priceAmount": 259.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "9d8ea91d-a9f2-4c0c-a36f-35d3c4db1004"
+    ],
+    "relatedProductIds": [
+      "f768dc06-e3b5-5213-ac95-ef3f02eb196d"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/memory/trident-z5-64gb.jpg",
+        "altText": "G.Skill Trident Z5 RGB DDR5 memory kit",
+        "isPrimary": true
+      }
+    ],
+    "id": "19ed576a-9a2e-5cb8-8d73-e60e65055ad6"
+  },
+  {
+    "sku": "SSD-SAMSUNG-990PRO-4TB",
+    "name": "Samsung 990 PRO 4TB PCIe Gen4 NVMe SSD",
+    "priceAmount": 329.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "e84f2f69-0d7d-4d79-a0a9-2e32145b1005"
+    ],
+    "relatedProductIds": [
+      "f768dc06-e3b5-5213-ac95-ef3f02eb196d"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/storage/samsung-990pro-4tb.jpg",
+        "altText": "Samsung 990 PRO 4TB SSD",
+        "isPrimary": true
+      }
+    ],
+    "id": "9c3d549a-4e61-5bd1-80a3-79655a9c0611"
+  },
+  {
+    "sku": "PSU-CORSAIR-RM1000X",
+    "name": "Corsair RM1000x 1000W Fully Modular Power Supply",
+    "priceAmount": 199.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "a8b40ea4-40d2-42ef-b43c-61bbd2d81006"
+    ],
+    "relatedProductIds": [
+      "2345ca9e-6a51-58fd-a968-5e95e7627a1c",
+      "f768dc06-e3b5-5213-ac95-ef3f02eb196d"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/psu/rm1000x-front.jpg",
+        "altText": "Corsair RM1000x power supply",
+        "isPrimary": true
+      }
+    ],
+    "id": "85617b04-1bb3-55b2-8442-6676c609204f"
+  },
+  {
+    "sku": "CASE-NZXT-H9FLOW",
+    "name": "NZXT H9 Flow Mid-Tower ATX Case",
+    "priceAmount": 169.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "f0d0d11d-7742-4695-8a9c-3e4fbd7a1007"
+    ],
+    "relatedProductIds": [
+      "f768dc06-e3b5-5213-ac95-ef3f02eb196d",
+      "2345ca9e-6a51-58fd-a968-5e95e7627a1c"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/cases/nzxt-h9-flow.jpg",
+        "altText": "NZXT H9 Flow computer case",
+        "isPrimary": true
+      }
+    ],
+    "id": "f1764b15-c121-5023-8bba-6356b6527231"
+  },
+  {
+    "sku": "COOLER-NOCTUA-NHD15G2",
+    "name": "Noctua NH-D15 G2 Dual-Tower CPU Cooler",
+    "priceAmount": 149.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "b5d7e6fb-c5d7-4ec4-87e8-6c67f7a41008"
+    ],
+    "relatedProductIds": [
+      "9b0218c1-9300-5179-8cd9-5e4006c02bd1"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/cooling/noctua-nhd15-g2.jpg",
+        "altText": "Noctua NH-D15 G2 air cooler",
+        "isPrimary": true
+      }
+    ],
+    "id": "e75c9b57-35c4-5ef2-93e1-319a47593a08"
+  },
+  {
+    "sku": "MON-LG-32GS95UE",
+    "name": "LG UltraGear 32-inch 4K OLED Gaming Monitor",
+    "priceAmount": 1299.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "d1f52dc7-09cf-4bc9-b40d-a2af0f9e1009"
+    ],
+    "relatedProductIds": [],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/monitors/lg-ultragear-32-oled.jpg",
+        "altText": "LG UltraGear OLED gaming monitor",
+        "isPrimary": true
+      }
+    ],
+    "id": "c80f5e47-25a9-5473-b607-61e11c711c16"
+  },
+  {
+    "sku": "KB-LOGI-MXKEYSS",
+    "name": "Logitech MX Keys S Wireless Keyboard",
+    "priceAmount": 109.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "4bc32fd1-2d17-4fd8-860e-57fceab41010"
+    ],
+    "relatedProductIds": [],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/keyboards/mx-keys-s-top.jpg",
+        "altText": "Logitech MX Keys S wireless keyboard",
+        "isPrimary": true
+      },
+      {
+        "url": "https://cdn.clwebstore.com/products/keyboards/mx-keys-s-angle.jpg",
+        "altText": "Angled view of Logitech MX Keys S keyboard",
+        "isPrimary": false
+      }
+    ],
+    "id": "a0ca73dd-2d8b-58fd-b3a3-8d1a7a910bfc"
+  },
+  {
+    "sku": "MON-ASUS-PG32UCDM",
+    "name": "ASUS ROG Swift OLED PG32UCDM 32-inch 4K 240Hz Gaming Monitor",
+    "priceAmount": 1299.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "d1f52dc7-09cf-4bc9-b40d-a2af0f9e1009"
+    ],
+    "relatedProductIds": [
+      "c8078a7a-6ac0-5193-8e9b-83d3898b9812",
+      "03033653-bc45-5617-ab5c-de7a58bf60c1"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/monitors/asus-pg32ucdm-front.jpg",
+        "altText": "ASUS ROG Swift OLED PG32UCDM monitor",
+        "isPrimary": true
+      }
+    ],
+    "id": "ea91fef6-81cf-5d8f-b731-f90f9e185f01"
+  },
+  {
+    "sku": "DISP-MINI-7INCH",
+    "name": "7-inch Mini Display Screen 1024x600 Resolution",
+    "priceAmount": 49.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "d1f52dc7-09cf-4bc9-b40d-a2af0f9e1009"
+    ],
+    "relatedProductIds": [
+      "ea91fef6-81cf-5d8f-b731-f90f9e185f01",
+      "03033653-bc45-5617-ab5c-de7a58bf60c1"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/monitors/mini-display-7inch.jpg",
+        "altText": "7-inch 1024x600 mini display",
+        "isPrimary": true
+      }
+    ],
+    "id": "c8078a7a-6ac0-5193-8e9b-83d3898b9812"
+  },
+  {
+    "sku": "DISP-LIANLI-88INCH",
+    "name": "Lian Li 8.8-inch High-Resolution Hardware Display",
+    "priceAmount": 119.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "d1f52dc7-09cf-4bc9-b40d-a2af0f9e1009"
+    ],
+    "relatedProductIds": [
+      "ea91fef6-81cf-5d8f-b731-f90f9e185f01",
+      "c8078a7a-6ac0-5193-8e9b-83d3898b9812"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/monitors/lianli-88inch.jpg",
+        "altText": "Lian Li 8.8-inch screen showing sensor data",
+        "isPrimary": true
+      }
+    ],
+    "id": "03033653-bc45-5617-ab5c-de7a58bf60c1"
+  },
+  {
+    "sku": "KB-CORS-K70MAX",
+    "name": "Corsair K70 MAX RGB Magnetic-Mechanical Gaming Keyboard",
+    "priceAmount": 229.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "4bc32fd1-2d17-4fd8-860e-57fceab41010"
+    ],
+    "relatedProductIds": [
+      "f7b90212-14ab-5460-a940-b9248ccf785c"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/keyboards/corsair-k70-max.jpg",
+        "altText": "Corsair K70 MAX RGB keyboard",
+        "isPrimary": true
+      }
+    ],
+    "id": "a2db62b1-c24f-5e34-9c55-e701ea392dca"
+  },
+  {
+    "sku": "MOUSE-CORS-M65ULTRA",
+    "name": "Corsair M65 RGB Ultra Tunable Gaming Mouse",
+    "priceAmount": 69.99,
+    "priceCurrency": "USD",
+    "categoryIds": [
+      "4bc32fd1-2d17-4fd8-860e-57fceab41010"
+    ],
+    "relatedProductIds": [
+      "a2db62b1-c24f-5e34-9c55-e701ea392dca"
+    ],
+    "images": [
+      {
+        "url": "https://cdn.clwebstore.com/products/mice/corsair-m65-ultra.jpg",
+        "altText": "Corsair M65 RGB Ultra gaming mouse",
+        "isPrimary": true
+      }
+    ],
+    "id": "f7b90212-14ab-5460-a940-b9248ccf785c"
+  }
+]
